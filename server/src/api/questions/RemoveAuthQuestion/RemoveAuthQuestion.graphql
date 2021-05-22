@@ -1,0 +1,10 @@
+type RemoveAuthQuestionResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  RemoveAuthQuestion(
+    id: ID!
+  ): RemoveAuthQuestionResponse!
+}
