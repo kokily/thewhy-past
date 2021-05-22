@@ -1,0 +1,13 @@
+type ListNoticeResponse {
+  ok: Boolean!
+  error: String
+  notice: [Notice]
+  lastPage: Int!
+}
+
+type Query {
+  ListNotice(
+    page: Int
+    title: String
+  ): ListNoticeResponse!
+}

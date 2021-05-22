@@ -8,6 +8,9 @@ type Mutation {
   Logout: LogoutResponse!
   Register(username: String!, password: String!): RegisterResponse!
   SendContact(name: String!, email: String!, subject: String!, body: String!): SendContactResponse!
+  AddNotice(title: String!, body: String!): AddNoticeResponse!
+  RemoveNotice(id: ID!): RemoveNoticeResponse!
+  UpdateNotice(id: ID!, title: String, body: String): UpdateNoticeResponse!
 }
 
 type LogoutResponse {
@@ -27,6 +30,8 @@ type MeResponse {
 
 type Query {
   Me: MeResponse!
+  ListNotice(page: Int, title: String): ListNoticeResponse!
+  ReadNotice(id: ID!): ReadNoticeResponse!
 }
 
 type RegisterResponse {
@@ -35,6 +40,34 @@ type RegisterResponse {
 }
 
 type SendContactResponse {
+  ok: Boolean!
+  error: String
+}
+
+type AddNoticeResponse {
+  ok: Boolean!
+  error: String
+}
+
+type ListNoticeResponse {
+  ok: Boolean!
+  error: String
+  notice: [Notice]
+  lastPage: Int!
+}
+
+type ReadNoticeResponse {
+  ok: Boolean!
+  error: String
+  notice: Notice
+}
+
+type RemoveNoticeResponse {
+  ok: Boolean!
+  error: String
+}
+
+type UpdateNoticeResponse {
   ok: Boolean!
   error: String
 }
