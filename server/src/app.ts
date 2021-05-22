@@ -4,6 +4,7 @@ import Router from 'koa-router';
 import cors from '@koa/cors';
 import bodyParser from 'koa-body';
 import schema from './libs/schema';
+import upload from './routes/upload';
 
 const app = new Koa();
 const router = new Router();
@@ -18,6 +19,7 @@ app.use(bodyParser({ multipart: true }));
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+router.use('/upload', upload.routes());
 router.get('/graphql', apollo.getMiddleware());
 router.post('/graphql', apollo.getMiddleware());
 
