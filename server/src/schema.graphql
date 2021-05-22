@@ -11,6 +11,9 @@ type Mutation {
   AddNotice(title: String!, body: String!): AddNoticeResponse!
   RemoveNotice(id: ID!): RemoveNoticeResponse!
   UpdateNotice(id: ID!, title: String, body: String): UpdateNoticeResponse!
+  AddStory(title: String!, body: String!, thumbnail: String, tags: [String]): AddStoryResponse!
+  RemoveStory(id: ID!): RemoveStoryResponse!
+  UpdateStory(id: ID!, title: String, body: String, thumbnail: String, tags: [String]): UpdateStoryResponse!
 }
 
 type LogoutResponse {
@@ -32,6 +35,8 @@ type Query {
   Me: MeResponse!
   ListNotice(page: Int, title: String): ListNoticeResponse!
   ReadNotice(id: ID!): ReadNoticeResponse!
+  ListStories(title: String, tag: String, cursor: ID): ListStoriesResponse!
+  ReadStory(id: ID!): ReadStoryResponse!
 }
 
 type RegisterResponse {
@@ -122,4 +127,32 @@ type Story {
   tags: [String]
   created_at: Date!
   updated_at: Date
+}
+
+type AddStoryResponse {
+  ok: Boolean!
+  error: String
+  story: Story
+}
+
+type ListStoriesResponse {
+  ok: Boolean!
+  error: String
+  stories: [Story]
+}
+
+type ReadStoryResponse {
+  ok: Boolean!
+  error: String
+  story: Story
+}
+
+type RemoveStoryResponse {
+  ok: Boolean!
+  error: String
+}
+
+type UpdateStoryResponse {
+  ok: Boolean!
+  error: String
 }

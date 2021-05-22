@@ -1,0 +1,40 @@
+import { getRepository } from 'typeorm';
+import { UpdateStoryMutationArgs, UpdateStoryResponse } from '../../../@types';
+import { Resolvers } from '../../../@types/resolvers';
+import authResolver from '../../../libs/authenticate';
+import { cleanNullArgs } from '../../../libs/utils';
+import Story from '../../../entities/Story';
+
+const resolvers: Resolvers = {
+  Mutation: {
+    UpdateStory: authResolver(
+      async (
+        _,
+        args: UpdateStoryMutationArgs
+      ): Promise<UpdateStoryResponse> => {
+        const { id } = args;
+
+        try {
+          const notNull = cleanNullArgs(args);
+
+          await getRepository(Story).update(
+            { id },
+            { ...notNull, updated_at: new Date() }
+          );
+
+          return {
+            ok: true,
+            error: null,
+          };
+        } catch (err) {
+          return {
+            ok: false,
+            error: err.message,
+          };
+        }
+      }
+    ),
+  },
+};
+
+export default resolvers;
