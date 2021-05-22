@@ -1,0 +1,8 @@
+scalar Date
+
+type Admin {
+  id: ID!
+  username: String!
+  password: String!
+  created_at: Date!
+}

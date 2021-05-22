@@ -3,25 +3,13 @@ import Koa, { Context } from 'koa';
 import Router from 'koa-router';
 import cors from '@koa/cors';
 import bodyParser from 'koa-body';
+import schema from './libs/schema';
 
 const app = new Koa();
 const router = new Router();
 
-const typeDefs = gql`
-  type Query {
-    hello: String!
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'Hello World!',
-  },
-};
-
 const apollo = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema,
   context: ({ ctx }: { ctx: Context }) => ({ ctx }),
 });
 
