@@ -4,7 +4,7 @@ import SendMail from '../../../libs/sendmail';
 
 const resolvers: Resolvers = {
   Mutation: {
-    Sendcontact: async (
+    SendContact: async (
       _,
       args: SendContactMutationArgs
     ): Promise<SendContactResponse> => {
