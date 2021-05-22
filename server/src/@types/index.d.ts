@@ -1,10 +1,12 @@
-export const typeDefs = ["type LoginResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype Mutation {\n  Login(password: String!): LoginResponse!\n  Logout: LogoutResponse!\n  Register(username: String!, password: String!): RegisterResponse!\n  SendContact(name: String!, email: String!, subject: String!, body: String!): SendContactResponse!\n  AddNotice(title: String!, body: String!): AddNoticeResponse!\n  RemoveNotice(id: ID!): RemoveNoticeResponse!\n  UpdateNotice(id: ID!, title: String, body: String): UpdateNoticeResponse!\n  AddStory(title: String!, body: String!, thumbnail: String, tags: [String]): AddStoryResponse!\n  RemoveStory(id: ID!): RemoveStoryResponse!\n  UpdateStory(id: ID!, title: String, body: String, thumbnail: String, tags: [String]): UpdateStoryResponse!\n}\n\ntype LogoutResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype Me {\n  id: String\n}\n\ntype MeResponse {\n  ok: Boolean!\n  error: String\n  me: Me\n}\n\ntype Query {\n  Me: MeResponse!\n  ListNotice(page: Int, title: String): ListNoticeResponse!\n  ReadNotice(id: ID!): ReadNoticeResponse!\n  ListStories(title: String, tag: String, cursor: ID): ListStoriesResponse!\n  ReadStory(id: ID!): ReadStoryResponse!\n}\n\ntype RegisterResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype SendContactResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype AddNoticeResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype ListNoticeResponse {\n  ok: Boolean!\n  error: String\n  notice: [Notice]\n  lastPage: Int!\n}\n\ntype ReadNoticeResponse {\n  ok: Boolean!\n  error: String\n  notice: Notice\n}\n\ntype RemoveNoticeResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype UpdateNoticeResponse {\n  ok: Boolean!\n  error: String\n}\n\nscalar Date\n\ntype Admin {\n  id: ID!\n  username: String!\n  password: String!\n  created_at: Date!\n}\n\ntype Notice {\n  id: ID!\n  num: Int!\n  title: String!\n  body: String!\n  created_at: Date!\n  updated_at: Date\n}\n\ntype Question {\n  id: ID!\n  name: String!\n  password: String!\n  phone: String\n  email: String\n  isReply: Boolean!\n  title: String!\n  body: String!\n  replyId: String\n  reply: Reply\n  created_at: Date!\n  updated_at: Date\n}\n\ntype Reply {\n  id: ID!\n  body: String!\n  questionId: String\n  question: Question\n  created_at: Date!\n  updated_at: Date\n}\n\ntype Story {\n  id: ID!\n  title: String!\n  body: String!\n  thumbnail: String\n  tags: [String]\n  created_at: Date!\n  updated_at: Date\n}\n\ntype AddStoryResponse {\n  ok: Boolean!\n  error: String\n  story: Story\n}\n\ntype ListStoriesResponse {\n  ok: Boolean!\n  error: String\n  stories: [Story]\n}\n\ntype ReadStoryResponse {\n  ok: Boolean!\n  error: String\n  story: Story\n}\n\ntype RemoveStoryResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype UpdateStoryResponse {\n  ok: Boolean!\n  error: String\n}\n"];
+export const typeDefs = ["type LoginResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype Mutation {\n  Login(password: String!): LoginResponse!\n  Logout: LogoutResponse!\n  Register(username: String!, password: String!): RegisterResponse!\n  SendContact(name: String!, email: String!, subject: String!, body: String!): SendContactResponse!\n  AddNotice(title: String!, body: String!): AddNoticeResponse!\n  RemoveNotice(id: ID!): RemoveNoticeResponse!\n  UpdateNotice(id: ID!, title: String, body: String): UpdateNoticeResponse!\n  AddQuestion(name: String!, password: String!, phone: String, email: String, title: String!, body: String!): AddQuestionResponse!\n  RemoveQuestion(id: ID!, password: String!): RemoveQuestionResponse!\n  UpdateQuestion(id: ID!, password: String!, name: String, phone: String, email: String, title: String, body: String): UpdateQuestionResponse!\n  ValidPassword(id: ID!, password: String!): ValidPasswordResponse!\n  AddStory(title: String!, body: String!, thumbnail: String, tags: [String]): AddStoryResponse!\n  RemoveStory(id: ID!): RemoveStoryResponse!\n  UpdateStory(id: ID!, title: String, body: String, thumbnail: String, tags: [String]): UpdateStoryResponse!\n}\n\ntype LogoutResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype Me {\n  id: String\n}\n\ntype MeResponse {\n  ok: Boolean!\n  error: String\n  me: Me\n}\n\ntype Query {\n  Me: MeResponse!\n  ListNotice(page: Int, title: String): ListNoticeResponse!\n  ReadNotice(id: ID!): ReadNoticeResponse!\n  ListQuestions(page: Int, title: String): ListQuestionsResponse!\n  ReadQuestion(id: ID!): ReadQuestionResponse!\n  ListStories(title: String, tag: String, cursor: ID): ListStoriesResponse!\n  ReadStory(id: ID!): ReadStoryResponse!\n}\n\ntype RegisterResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype SendContactResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype AddNoticeResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype ListNoticeResponse {\n  ok: Boolean!\n  error: String\n  notice: [Notice]\n  lastPage: Int!\n}\n\ntype ReadNoticeResponse {\n  ok: Boolean!\n  error: String\n  notice: Notice\n}\n\ntype RemoveNoticeResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype UpdateNoticeResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype AddQuestionResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype ListQuestionsResponse {\n  ok: Boolean!\n  error: String\n  questions: [Question]\n  lastPage: Int!\n}\n\ntype ReadQuestionResponse {\n  ok: Boolean!\n  error: String\n  question: Question\n}\n\ntype RemoveQuestionResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype UpdateQuestionResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype ValidPasswordResponse {\n  ok: Boolean\n  error: String\n}\n\nscalar Date\n\ntype Admin {\n  id: ID!\n  username: String!\n  password: String!\n  created_at: Date!\n}\n\ntype Notice {\n  id: ID!\n  num: Int!\n  title: String!\n  body: String!\n  created_at: Date!\n  updated_at: Date\n}\n\ntype Question {\n  id: ID!\n  name: String!\n  password: String!\n  phone: String\n  email: String\n  isReply: Boolean!\n  title: String!\n  body: String!\n  replyId: String\n  reply: Reply\n  created_at: Date!\n  updated_at: Date\n}\n\ntype Reply {\n  id: ID!\n  body: String!\n  questionId: String\n  question: Question\n  created_at: Date!\n  updated_at: Date\n}\n\ntype Story {\n  id: ID!\n  title: String!\n  body: String!\n  thumbnail: String\n  tags: [String]\n  created_at: Date!\n  updated_at: Date\n}\n\ntype AddStoryResponse {\n  ok: Boolean!\n  error: String\n  story: Story\n}\n\ntype ListStoriesResponse {\n  ok: Boolean!\n  error: String\n  stories: [Story]\n}\n\ntype ReadStoryResponse {\n  ok: Boolean!\n  error: String\n  story: Story\n}\n\ntype RemoveStoryResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype UpdateStoryResponse {\n  ok: Boolean!\n  error: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
   Me: MeResponse;
   ListNotice: ListNoticeResponse;
   ReadNotice: ReadNoticeResponse;
+  ListQuestions: ListQuestionsResponse;
+  ReadQuestion: ReadQuestionResponse;
   ListStories: ListStoriesResponse;
   ReadStory: ReadStoryResponse;
 }
@@ -15,6 +17,15 @@ export interface ListNoticeQueryArgs {
 }
 
 export interface ReadNoticeQueryArgs {
+  id: string;
+}
+
+export interface ListQuestionsQueryArgs {
+  page: number | null;
+  title: string | null;
+}
+
+export interface ReadQuestionQueryArgs {
   id: string;
 }
 
@@ -62,6 +73,43 @@ export interface ReadNoticeResponse {
   notice: Notice | null;
 }
 
+export interface ListQuestionsResponse {
+  ok: boolean;
+  error: string | null;
+  questions: Array<Question> | null;
+  lastPage: number;
+}
+
+export interface Question {
+  id: string;
+  name: string;
+  password: string;
+  phone: string | null;
+  email: string | null;
+  isReply: boolean;
+  title: string;
+  body: string;
+  replyId: string | null;
+  reply: Reply | null;
+  created_at: Date;
+  updated_at: Date | null;
+}
+
+export interface Reply {
+  id: string;
+  body: string;
+  questionId: string | null;
+  question: Question | null;
+  created_at: Date;
+  updated_at: Date | null;
+}
+
+export interface ReadQuestionResponse {
+  ok: boolean;
+  error: string | null;
+  question: Question | null;
+}
+
 export interface ListStoriesResponse {
   ok: boolean;
   error: string | null;
@@ -92,6 +140,10 @@ export interface Mutation {
   AddNotice: AddNoticeResponse;
   RemoveNotice: RemoveNoticeResponse;
   UpdateNotice: UpdateNoticeResponse;
+  AddQuestion: AddQuestionResponse;
+  RemoveQuestion: RemoveQuestionResponse;
+  UpdateQuestion: UpdateQuestionResponse;
+  ValidPassword: ValidPasswordResponse;
   AddStory: AddStoryResponse;
   RemoveStory: RemoveStoryResponse;
   UpdateStory: UpdateStoryResponse;
@@ -126,6 +178,35 @@ export interface UpdateNoticeMutationArgs {
   id: string;
   title: string | null;
   body: string | null;
+}
+
+export interface AddQuestionMutationArgs {
+  name: string;
+  password: string;
+  phone: string | null;
+  email: string | null;
+  title: string;
+  body: string;
+}
+
+export interface RemoveQuestionMutationArgs {
+  id: string;
+  password: string;
+}
+
+export interface UpdateQuestionMutationArgs {
+  id: string;
+  password: string;
+  name: string | null;
+  phone: string | null;
+  email: string | null;
+  title: string | null;
+  body: string | null;
+}
+
+export interface ValidPasswordMutationArgs {
+  id: string;
+  password: string;
 }
 
 export interface AddStoryMutationArgs {
@@ -182,6 +263,26 @@ export interface UpdateNoticeResponse {
   error: string | null;
 }
 
+export interface AddQuestionResponse {
+  ok: boolean;
+  error: string | null;
+}
+
+export interface RemoveQuestionResponse {
+  ok: boolean;
+  error: string | null;
+}
+
+export interface UpdateQuestionResponse {
+  ok: boolean;
+  error: string | null;
+}
+
+export interface ValidPasswordResponse {
+  ok: boolean | null;
+  error: string | null;
+}
+
 export interface AddStoryResponse {
   ok: boolean;
   error: string | null;
@@ -203,28 +304,4 @@ export interface Admin {
   username: string;
   password: string;
   created_at: Date;
-}
-
-export interface Question {
-  id: string;
-  name: string;
-  password: string;
-  phone: string | null;
-  email: string | null;
-  isReply: boolean;
-  title: string;
-  body: string;
-  replyId: string | null;
-  reply: Reply | null;
-  created_at: Date;
-  updated_at: Date | null;
-}
-
-export interface Reply {
-  id: string;
-  body: string;
-  questionId: string | null;
-  question: Question | null;
-  created_at: Date;
-  updated_at: Date | null;
 }
